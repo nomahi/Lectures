@@ -5,19 +5,18 @@
 ###
 
 
-# 1. Install the package from CRAN (require R >= 3.5.0)
+# 1. Install and load the "NMA" package
 
-install.packages("NMA")
+pkgCheck <- function(pkg){
+	if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
+	library(pkg, character.only = TRUE)
+}
 
-
-
-# 2. Load the "NMA" package
-
-library("NMA")            # load the "NMA" package
-
+pkgCheck("NMA")
 
 
-# 3. Load the illustrative example
+
+# 2. Load the illustrative example
 #    Original dataset from: https://doi.org/10.1001/archinternmed.2010.427
 
 data(heartfailure)
@@ -28,7 +27,7 @@ print(heartfailure)
 
 
 
-# 4. Setup: Transforming arm-level data to contrast-based summary statistics and making objects for the network meta-analysis
+# 3. Setup: Transforming arm-level data to contrast-based summary statistics and making objects for the network meta-analysis
 
 hf2 <- setup(study=study,trt=trt,d=d,n=n,z=c(SBP,DBP,pubyear),measure="OR",ref="Placebo",data=heartfailure)
 hf3 <- setup(study=study,trt=trt,d=d,n=n,z=c(SBP,DBP,pubyear),measure="RR",ref="Placebo",data=heartfailure)
@@ -38,7 +37,7 @@ hf4 <- setup(study=study,trt=trt,d=d,n=n,z=c(SBP,DBP,pubyear),measure="RD",ref="
 
 
 
-# 5. Creating a network plot
+# 4. Creating a network plot
 
 netplot(hf2)                                      # Network plot
 netplot(hf2,base.lwd=1.5,base.cex=1.5)            # The edge widths and the node sizes can be changed.
@@ -47,7 +46,7 @@ netplot(hf2,text=FALSE)                           # The text can be cancelled.
 
 
 
-# 6. Pairwise meta-analysis for all treatment pairs with direct comparisons
+# 5. Pairwise meta-analysis for all treatment pairs with direct comparisons
 
 pairwise(hf2)            # The pairwise meta-analyses are performed by "rma" and "regtest" functions of "metafor" package.
 pairwise(hf3)
@@ -55,7 +54,7 @@ pairwise(hf4)
 
 
 
-# 7. Network meta-analysis with the consistency model
+# 6. Network meta-analysis with the consistency model
 
 nma(hf2)                            # measure = "OR" (odds ratio)
 nma(hf2, eform=TRUE)                # The outputs can be changed to exponential scale by "eform".
@@ -67,7 +66,7 @@ nma(hf4)                            # measure = "RD" (risk difference)
 
 
 
-# 8. Network meta-regression
+# 7. Network meta-regression
 
 nmareg(hf2,z=SBP,treats=3)
 nmareg(hf2,z=c(SBP,DBP),treats=3)
@@ -77,7 +76,7 @@ nmareg(hf2,z=c(SBP,DBP),treats=c(3,4,6))
 
 
 
-# 9. Creating ranking statistics for network meta-analysis (e.g., SUCRA)
+# 8. Creating ranking statistics for network meta-analysis (e.g., SUCRA)
 
 nmarank(hf2)
 nmarank(hf2, ascending=FALSE)                                 # The order can be inversed by "ascending".
@@ -86,7 +85,7 @@ nmarank(hf2, ascending=FALSE)                                 # The order can be
 
 
 
-# 10. Creating a league table
+# 9. Creating a league table
 
 nmaleague(hf2)
 nmaleague(hf2, eform=TRUE)                                              # The outputs can be changed to exponential scale by "eform".
@@ -97,7 +96,7 @@ nmaleague(hf2, eform=TRUE, out.csv="nmaleague_out.csv")                 # The ou
 
 
 
-# 11. Ranked forest plot
+# 10. Ranked forest plot
 
 nmaforest(hf2)                                                # Ranked forest plot
 nmaforest(hf2, col.plot="blue")                               # The color can be changed.
@@ -128,7 +127,7 @@ forestplot(labeltext=of2$labeltext, of2$coef, boxsize = of2$boxsize,
 		
 		
 
-# 12. Local inconsistency tests for all poissible closed loops (generalized Bucher's test)
+# 11. Local inconsistency tests for all poissible closed loops (generalized Bucher's test)
 
 local.ict(hf2)
 
@@ -136,7 +135,7 @@ local.ict(hf2)
 
 
 
-# 13. Higgins' global inconsistency test based on the design-by-treatment interaction model
+# 12. Higgins' global inconsistency test based on the design-by-treatment interaction model
 
 global.ict(hf2)
 
@@ -144,7 +143,7 @@ global.ict(hf2)
 
 
 
-# 14. Q-statistic and its factorization
+# 13. Q-statistic and its factorization
 
 nmaQ(hf2)
 
@@ -152,7 +151,7 @@ nmaQ(hf2)
 
 
 
-# 15. Noma's side-splitting
+# 14. Noma's side-splitting
 
 sidesplit(hf2)
 
@@ -160,14 +159,14 @@ sidesplit(hf2)
 
 
 
-# 16. Jackson's random inconsistency model
+# 15. Jackson's random inconsistency model
 
 random.icm(hf2)
 
 
 
 
-# 17. Comparison-adjusted funnel plot
+# 16. Comparison-adjusted funnel plot
 
 nmafunnel(hf2,legends="bottomright")		# Comparison-adjusted funnel plot for placebo-controlled trials
 
@@ -175,7 +174,7 @@ nmafunnel(hf2,legends="bottomright")		# Comparison-adjusted funnel plot for plac
 
 
 
-# 18. Contribution weight matrices
+# 17. Contribution weight matrices
 
 nmaweight(hf2)
 
@@ -183,7 +182,7 @@ nmaweight(hf2)
 
 
 
-# 19. Transitivity analysis
+# 18. Transitivity analysis
 
 transitivity(hf2, SBP)
 transitivity(hf2, SBP, yrange=c(100,220))			# Specify the range of y-axis.
