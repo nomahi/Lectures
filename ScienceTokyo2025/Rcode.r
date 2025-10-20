@@ -49,9 +49,9 @@ netplot(hf2,text=FALSE)                           # The text can be cancelled.
 
 # 6. Pairwise meta-analysis for all treatment pairs with direct comparisons
 
-pairwise(hf2)            # The pairwise meta-analyses are performed by "rma" and "regtest" functions of "metafor" package.
-pairwise(hf3)
-pairwise(hf4)
+pairwise(hf2,method="REML",test="z")            # The pairwise meta-analyses are performed by "rma" and "regtest" functions of "metafor" package.
+pairwise(hf3,method="REML",test="z")
+pairwise(hf4,method="REML",test="z")
 
 
 
