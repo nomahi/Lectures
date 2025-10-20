@@ -9,3 +9,4 @@ You are welcome to view, download, and reuse them with proper attribution.
 
 ## Contact
 If you have questions or suggestions, feel free to open an issue or contact me.
+Hisashi Noma @ The Institute of Statistical Mathematics, Tokyo, Japan (e-mail: noma@ism.ac.jp)
