@@ -1,5 +1,7 @@
-# "NMA: Network meta-analysis based on multivariate meta-analysis and meta-regression models in R"
+# "Statistical Methods for Network Meta-Analysis: Practical Applications Using the R Package 'NMA'"
 #  by Hisashi Noma
+#
+#  EACA Symposium 2025: Evidence-Based Health Care & Network Meta-Analysis
 #
 #  October 23, 2025
 ###
