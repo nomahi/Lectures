@@ -20,4 +20,6 @@ fit_pp <- ttemsm(
 formula = Y ~ A + L1 + time + I(time^2) + trial,
 data = exdata04, id = ID, weight = w_pp,
 eform = TRUE, cl = 0.95 )
+
+fit_pp
 # Pooled logistic regression for target trial emulation
