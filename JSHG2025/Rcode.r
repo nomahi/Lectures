@@ -10,7 +10,8 @@
 #------------------------------------------------------------------------
 
 install.packages(“rqlm”)
-library(“rqlm”)
+
+library(rqlm)
 head(exdata04, 10)
 
 data(exdata04)    # Example dataset
