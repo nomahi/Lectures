@@ -16,19 +16,16 @@ head(exdata04, 10)
 
 data(exdata04)    # Example dataset
 
-fit_pp <- ttemsm(
-formula = Y ~ A + L1 + time + I(time^2) + trial,
-data = exdata04, id = ID, weight = w_pp,
-eform = TRUE, cl = 0.95 )
+ttemsm( Y ~ A + L1 + time + I(time^2) + trial,
+  data    = exdata04, id = ID, weight = w_pp,
+  eform   = TRUE, cl = 0.95, var.method="standard")
 # Pooled logistic regression for target trial emulation
-
-fit_pp
 
 # Call:
 # ttemsm(formula = Y ~ A + L1 + time + I(time^2) + trial, data = exdata04, 
-#     id = ID, weight = w_pp, eform = TRUE, cl = 0.95)
+#     id = ID, weight = w_pp, eform = TRUE, cl = 0.95, var.method = "standard")
 # 
-# Coefficient estimates and CIs with robust SE estimator (cluster-robust SE):
+# Coefficient estimates and CIs with cluster-robust SE estimator (standard):
 #             Estimate Robust SE exp(coef)  Lower  Upper  z value Pr(>|z|)
 # (Intercept)  -2.4142    0.2358    0.0894 0.0563 0.1420 -10.2363   0.0000
 # A            -0.5190    0.2105    0.5951 0.3939 0.8990  -2.4656   0.0137
@@ -39,3 +36,26 @@ fit_pp
 # trial3       -0.3587    0.2610    0.6986 0.4188 1.1651  -1.3744   0.1693
 # trial4       -0.6249    0.2955    0.5353 0.3000 0.9552  -2.1150   0.0344
 # trial5       -0.6327    0.2903    0.5311 0.3007 0.9382  -2.1798   0.0293
+
+
+ttemsm( Y ~ A + L1 + time + I(time^2) + trial,
+  data    = exdata04, id = ID, weight = w_pp,
+  eform   = TRUE, cl = 0.95, var.method="MBN")
+# Pooled logistic regression for target trial emulation
+# Morel-Bokossa-Neerchaal-type corrected SE estimator is used.
+
+# Call:
+# ttemsm(formula = Y ~ A + L1 + time + I(time^2) + trial, data = exdata04, 
+#     id = ID, weight = w_pp, eform = TRUE, cl = 0.95, var.method = "MBN")
+# 
+# Coefficient estimates and CIs with cluster-robust SE estimator (MBN):
+#             Estimate Robust SE exp(coef)  Lower  Upper  z value Pr(>|z|)
+# (Intercept)  -2.4142    0.2388    0.0894 0.0560 0.1428 -10.1077   0.0000
+# A            -0.5190    0.2125    0.5951 0.3924 0.9025  -2.4427   0.0146
+# L1            0.5050    0.0967    1.6570 1.3710 2.0027   5.2235   0.0000
+# time         -0.0236    0.1307    0.9767 0.7560 1.2618  -0.1805   0.8567
+# I(time^2)     0.0213    0.0190    1.0216 0.9843 1.0603   1.1237   0.2611
+# trial2       -0.2638    0.2753    0.7681 0.4478 1.3174  -0.9584   0.3378
+# trial3       -0.3587    0.2638    0.6986 0.4165 1.1717  -1.3595   0.1740
+# trial4       -0.6249    0.2984    0.5353 0.2983 0.9607  -2.0943   0.0362
+# trial5       -0.6327    0.2932    0.5311 0.2990 0.9435  -2.1582   0.0309
