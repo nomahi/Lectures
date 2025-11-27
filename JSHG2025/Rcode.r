@@ -9,7 +9,7 @@
 #
 #------------------------------------------------------------------------
 
-install.packages(“rqlm”)
+install.packages(“rqlm”)        # Install from CRAN
 
 library(rqlm)
 head(exdata04, 10)
