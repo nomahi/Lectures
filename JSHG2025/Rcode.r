@@ -14,7 +14,15 @@ install.packages(“rqlm”)        # Install from CRAN
 library(rqlm)
 head(exdata04, 10)
 
-data(exdata04)    # Example dataset
+data(exdata04)    # Example dataset; Long format
+
+# Y：アウトカム（=0, 1）
+# A：治療
+# L1：交絡要因　～　簡単のため、１つだけだが複数でよい（formulaに + L2 + L3 + ... とする）
+# time：追跡期間　～　３次以上の項／スプラインを入れてもよい
+# trial：試験（Factor）
+# ID：個人のID
+# w_pp：IPWの重み
 
 ttemsm( Y ~ A + L1 + time + I(time^2) + trial,
   data    = exdata04, id = ID, weight = w_pp,
