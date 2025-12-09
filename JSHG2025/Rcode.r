@@ -67,3 +67,7 @@ ttemsm( Y ~ A + L1 + time + I(time^2) + trial,
 # trial3       -0.3587    0.2638    0.6986 0.4165 1.1717  -1.3595   0.1740
 # trial4       -0.6249    0.2984    0.5353 0.2983 0.9607  -2.0943   0.0362
 # trial5       -0.6327    0.2932    0.5311 0.2990 0.9435  -2.1582   0.0309
+
+# Note 1: ベースライン共変量（交絡要因）の調整は、IPTW解析としてもよい。その場合は、stabilized weightの使用が推奨されている（rqlm packageでは、stabwt関数で、stabilized weightの簡単な計算が可能です）。
+# Note 2: ITT, PP解析の双方で、脱落に対してのIPCW解析を行うことが推奨されています。重みの推定には、ベースライン共変量を固定して、time-fixed variablesとして推定するのが現状のスタンダードです（rqlm packageでは、stabwtlong関数で、stabilized weightの計算が可能です）。
+# Note 3: PP解析では、プロトコル逸脱に対してのIPCW解析を行う必要があります。重みの推定には、時間変化する変数を、time-varying variablesとしてモデル化するのが現状のスタンダードです（rqlm packageのstabwtlong関数で、stabilized weightの計算が可能です）。
