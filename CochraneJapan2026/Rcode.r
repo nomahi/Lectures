@@ -91,7 +91,6 @@ nmarank(hf3, ascending=FALSE)                                 # The order can be
 
 nmaleague(hf3)
 nmaleague(hf3, eform=TRUE)                                              # The outputs can be changed to exponential scale by "eform".
-nmaleague(hf3, eform=TRUE, digits=2)                                    # Number of decimal places can be changed by "digits"
 nmaleague(hf3, eform=TRUE, PI=TRUE)                                     # A league table of prediction intervals can be created by setting "PI=TRUE".
 nmaleague(hf3, eform=TRUE, out.csv="nmaleague_out.csv")                 # The outputs can be exported to a CSV file by setting "out.csv='filename'".
 
