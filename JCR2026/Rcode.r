@@ -31,6 +31,9 @@
 # 0. 使用するパッケージの読み込み
 ############################################################
 
+install.packages(c("survival","WeightIt","cobalt","tableone","survey"), repos = "https://cloud.r-project.org")
+# 必要なライブラリのインストール（初回のみ）
+
 # survival:
 #   生存時間解析の基本パッケージです。
 #   Kaplan-Meier 曲線や Cox 回帰を行います。
