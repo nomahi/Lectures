@@ -69,9 +69,9 @@ library(survey)
 # CSV ファイルを読み込みます。
 excovid <- read.csv("excovid19.csv", stringsAsFactors = FALSE)
 
-# データの構造を確認します。
+# データセットの中身を確認します。
 # 各変数の型や、観測数を確認できます。
-str(excovid)
+head(excovid,20)
 
 # 治療群を factor 型に変換します。
 # 図や表で 0/1 より群名のほうが見やすいためです。
